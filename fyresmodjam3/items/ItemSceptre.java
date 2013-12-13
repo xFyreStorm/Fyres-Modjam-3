@@ -36,8 +36,8 @@ public class ItemSceptre extends Item {
 		}
 		
 		//world.playSoundAtEntity(player, "fyresmodjam3:beam1", 1.0F, 1.0F);
-		player.playSound("fyresmodjam3:beam1", 1.0F, 1.0F);
-		player.playSound("random.xporb", 1.0F, 1.0F);
+		//player.playSound("fyresmodjam3:beam1", 1.0F, 1.0F);
+		//player.playSound("random.xporb", 1.0F, 1.0F);
 		
 		return stack;
 	}

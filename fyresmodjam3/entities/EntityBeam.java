@@ -1,5 +1,7 @@
 package fyresmodjam3.entities;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
+import fyresmodjam3.handlers.PacketHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -25,7 +27,12 @@ public class EntityBeam extends EntityArrow {
 	
 	public void onCollideWithPlayer(EntityPlayer par1EntityPlayer) {}
 	
-	public void onUpdate() {super.onUpdate(); if(this.canBePickedUp != 0) {this.setDead();}}
+	public void onUpdate() {
+		super.onUpdate();
+		if(this.canBePickedUp != 0) {this.setDead();}
+		
+		this.playSound("fyresmodjam3:beam1", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+	}
 	
 	// TODO After modjam, or if I have time, make this actually a beam, rather than a single projectile :P
 }
