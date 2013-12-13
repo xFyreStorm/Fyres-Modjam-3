@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.Side;
 import fyresmodjam3.handlers.ClientTickHandler;
 import fyresmodjam3.handlers.FyresKeyHandler;
 import fyresmodjam3.tileentities.TileEntityCrystal;
+import fyresmodjam3.tileentities.renderers.TileEntityCrystalRenderer;
 
 public class ClientProxy extends CommonProxy {
 	@Override

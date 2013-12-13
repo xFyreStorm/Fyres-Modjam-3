@@ -10,11 +10,14 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class TileEntityCrystalRenderer extends TileEntitySpecialRenderer {
 	
 	private ModelCrystal modelCrystal = new ModelCrystal();
+	
+	public static ResourceLocation texture = new ResourceLocation("fyresmodjam3", "textures/blocks/crystal.png");
 
 	@Override
 	public void renderTileEntityAt(TileEntity tileentity, double d0, double d1, double d2, float f) {
@@ -35,6 +38,8 @@ public class TileEntityCrystalRenderer extends TileEntitySpecialRenderer {
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) l1, (float) l2);
 		
 		GL11.glPushMatrix();
+		
+		GL11.glTranslatef(0.5F, 0.0F, 0.5F);
 		
 		this.tileEntityRenderer.renderEngine.bindTexture(texture);
 		modelCrystal.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
