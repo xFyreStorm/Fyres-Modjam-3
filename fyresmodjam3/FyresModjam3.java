@@ -37,6 +37,7 @@ public class FyresModjam3 {
 	//reminders
 	public static Item sceptre;
 	public static Item crystalItem;
+	public static Item scroll;
 	
 	public static Block crystal; //not yet sure how many blocks I'll need
 	public static Block crystalStand;
@@ -76,6 +77,9 @@ public class FyresModjam3 {
 		
 		sceptre = new ItemSceptre(itemID).setUnlocalizedName("sceptre").setCreativeTab(CreativeTabs.tabCombat).setFull3D();
 		LanguageRegistry.addName(sceptre, "Sceptre");
+		
+		scroll = new ItemScroll(itemID + 1).setUnlocalizedName("scroll").setCreativeTab(CreativeTabs.tabMisc);
+		LanguageRegistry.addName(scroll, "Scroll");
 		
 		EntityRegistry.registerGlobalEntityID(EntityBeam.class, "Beam", EntityRegistry.findGlobalUniqueEntityId());
 		EntityRegistry.registerModEntity(EntityBeam.class, "Beam", 0, instance, 128, 1, true);
