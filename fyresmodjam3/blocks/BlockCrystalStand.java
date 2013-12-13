@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import fyresmodjam3.tileentities.TileEntityCrystalStand;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -13,6 +14,11 @@ public class BlockCrystalStand extends BlockContainer {
 
 	public BlockCrystalStand(int par1) {
 		super(par1, Material.rock);
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+	}
+	
+	public boolean canHarvestBlock(EntityPlayer player, int i) {
+		return false;
 	}
 
 	@Override

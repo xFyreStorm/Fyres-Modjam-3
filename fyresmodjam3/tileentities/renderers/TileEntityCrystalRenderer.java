@@ -40,7 +40,7 @@ public class TileEntityCrystalRenderer extends TileEntitySpecialRenderer {
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) l1, (float) l2);
 		
 		float f3 = (float) (world.getWorldInfo().getWorldTime() % 20) / 20.0F;
-		GL11.glTranslatef(0.5F, -0.33F + (f3 > 0.5F ? 0.25F - 0.25F * f3 : 0.25F * f3) , 0.5F);
+		GL11.glTranslatef(0.525F, -0.4F + (f3 > 0.5F ? 0.25F - 0.25F * f3 : 0.25F * f3), 0.525F);
 		
 		Color color = ItemCrystal.colors[crystal.getBlockMetadata() % ItemCrystal.colors.length];
 		GL11.glColor3f((float) color.getRed() / 255.0F, (float) color.getGreen() / 255.0F, (float) color.getBlue() / 255.0F);
