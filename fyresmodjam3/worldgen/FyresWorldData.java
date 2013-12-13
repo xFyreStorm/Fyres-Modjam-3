@@ -1,7 +1,9 @@
 package fyresmodjam3.worldgen;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
+import net.minecraft.world.storage.MapStorage;
 
 public class FyresWorldData extends WorldSavedData {
 
@@ -21,6 +23,13 @@ public class FyresWorldData extends WorldSavedData {
 	public void writeToNBT(NBTTagCompound nbttagcompound) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public static FyresWorldData forWorld(World world) {
+		MapStorage storage = world.perWorldStorage;
+		FyresWorldData result = (FyresWorldData) storage.loadData(FyresWorldData.class, key);
+		if(result == null) {result = new FyresWorldData(); storage.setData(key, result);}
+		return result;
 	}
 
 }

@@ -14,12 +14,14 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import fyresmodjam3.blocks.BlockCrystal;
 import fyresmodjam3.handlers.CommonTickHandler;
+import fyresmodjam3.handlers.GUIHandler;
 import fyresmodjam3.handlers.PacketHandler;
 import fyresmodjam3.items.ItemCrystal;
 import fyresmodjam3.tileentities.TileEntityCrystal;
@@ -60,13 +62,14 @@ public class FyresModjam3 {
 	public void init(FMLInitializationEvent event) {
 		TickRegistry.registerTickHandler(new CommonTickHandler(), Side.SERVER);
 		proxy.register();
+		NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
 		
-		crystalItem = new ItemCrystal(itemID);
-		
-		crystal = new BlockCrystal(itemID + 256 /*for itemblock purposes*/).setCreativeTab(CreativeTabs.tabMaterials); //Remember to remove from creative tabs later!
+		crystal = new BlockCrystal(blockID).setCreativeTab(CreativeTabs.tabMaterials); //Remember to remove from creative tabs later!
 		GameRegistry.registerBlock(crystal, "crystal");
 		GameRegistry.registerTileEntity(TileEntityCrystal.class, "Crystal Tile Entity");
 		LanguageRegistry.addName(crystal, "Crystal");
+		
+		crystalItem = new ItemCrystal(crystal.blockID - 256);
 	}
 	
 	@EventHandler
