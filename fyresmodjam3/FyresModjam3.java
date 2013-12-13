@@ -52,12 +52,12 @@ public class FyresModjam3 {
 		TickRegistry.registerTickHandler(new CommonTickHandler(), Side.SERVER);
 		proxy.register();
 		
-		crystal = new BlockCrystal(blockID);
+		crystal = new BlockCrystal(blockID).setCreativeTab(CreativeTabs.tabMaterials); //Remember to remove from creative tabs later!
 		GameRegistry.registerBlock(crystal, "crystal");
 		GameRegistry.registerTileEntity(TileEntityCrystal.class, "Crystal Tile Entity");
 		LanguageRegistry.addName(crystal, "Crystal");
 		
-		crystalItem = new ItemCrystal(itemID).setCreativeTab(CreativeTabs.tabMaterials); //Remember to remove from creative tabs later!
+		crystalItem = new ItemCrystal(itemID);
 	}
 	
 	@EventHandler

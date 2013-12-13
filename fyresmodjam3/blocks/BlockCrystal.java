@@ -23,6 +23,7 @@ public class BlockCrystal extends BlockContainer {
 	
 	public BlockCrystal(int par1) {
 		super(par1, Material.glass);
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		// TODO set block bounds
 	}
 

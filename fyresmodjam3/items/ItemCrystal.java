@@ -32,7 +32,7 @@ public class ItemCrystal extends ItemBlock {
 	public String getItemDisplayName(ItemStack itemStack) {
 		return names[itemStack.getItemDamage() % names.length] + " Crystal";
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
 		texture = iconRegister.registerIcon("fyresmodjam3:crystal_item");
@@ -43,8 +43,21 @@ public class ItemCrystal extends ItemBlock {
 	public int getColorFromItemStack(ItemStack itemStack, int i) {
 		return colors[itemStack.getItemDamage() % colors.length].getRGB();
 	}
-	
+
 	public int getBlockID() {
 		return FyresModjam3.crystal.blockID;
 	}
+
+	@SideOnly(Side.CLIENT)
+	public int getSpriteNumber() {
+		return 1;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public Icon getIconFromDamage(int par1) {
+		return this.itemIcon;
+	}
+	
+	//public String getUnlocalizedName() {return super.getUnlocalizedName();}
+	//public String getUnlocalizedName(ItemStack stack) {return super.getUnlocalizedName(stack);}
 }
