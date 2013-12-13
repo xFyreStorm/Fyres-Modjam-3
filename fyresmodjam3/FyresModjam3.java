@@ -27,6 +27,7 @@ import fyresmodjam3.handlers.GUIHandler;
 import fyresmodjam3.handlers.PacketHandler;
 import fyresmodjam3.items.*;
 import fyresmodjam3.tileentities.TileEntityCrystal;
+import fyresmodjam3.tileentities.TileEntityCrystalStand;
 
 @Mod(modid = "fyresmodjam3", name = "Fyres Modjam 3", version = "0.0.1a")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"FyresModjam3"}, packetHandler = PacketHandler.class)
@@ -68,10 +69,20 @@ public class FyresModjam3 {
 		TickRegistry.registerTickHandler(new CommonTickHandler(), Side.SERVER);
 		NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
 		
-		crystal = new BlockCrystal(blockID).setCreativeTab(CreativeTabs.tabMaterials); //Remember to remove from creative tabs later!
+		//Blocks
+		
+		crystal = new BlockCrystal(blockID).setCreativeTab(CreativeTabs.tabMaterials);
 		GameRegistry.registerBlock(crystal, "crystal");
 		GameRegistry.registerTileEntity(TileEntityCrystal.class, "Crystal Tile Entity");
 		LanguageRegistry.addName(crystal, "Crystal");
+		
+		crystalStand = new BlockCrystalStand(blockID + 1).setCreativeTab(CreativeTabs.tabDecorations);
+		GameRegistry.registerBlock(crystalStand, "crystalStand");
+		GameRegistry.registerTileEntity(TileEntityCrystalStand.class, "Crystal Stand Tile Entity");
+		LanguageRegistry.addName(crystalStand, "Crystal Stand");
+		
+		
+		//Items
 		
 		crystalItem = new ItemCrystal(crystal.blockID - 256);
 		

@@ -13,7 +13,9 @@ import fyresmodjam3.entities.renderers.EntityBeamRenderer;
 import fyresmodjam3.handlers.ClientTickHandler;
 import fyresmodjam3.handlers.FyresKeyHandler;
 import fyresmodjam3.tileentities.TileEntityCrystal;
+import fyresmodjam3.tileentities.TileEntityCrystalStand;
 import fyresmodjam3.tileentities.renderers.TileEntityCrystalRenderer;
+import fyresmodjam3.tileentities.renderers.TileEntityCrystalStandRenderer;
 
 public class ClientProxy extends CommonProxy {
 	@Override
@@ -23,6 +25,7 @@ public class ClientProxy extends CommonProxy {
 		KeyBindingRegistry.registerKeyBinding(new FyresKeyHandler()); //Am I even going to use keys?
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCrystal.class, new TileEntityCrystalRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCrystalStand.class, new TileEntityCrystalStandRenderer());
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityBeam.class, new EntityBeamRenderer());
 		
