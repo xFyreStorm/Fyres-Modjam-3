@@ -19,11 +19,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
-import fyresmodjam3.blocks.BlockCrystal;
+import fyresmodjam3.blocks.*;
 import fyresmodjam3.handlers.CommonTickHandler;
 import fyresmodjam3.handlers.GUIHandler;
 import fyresmodjam3.handlers.PacketHandler;
-import fyresmodjam3.items.ItemCrystal;
+import fyresmodjam3.items.*;
 import fyresmodjam3.tileentities.TileEntityCrystal;
 
 @Mod(modid = "fyresmodjam3", name = "Fyres Modjam 3", version = "0.0.1a")
@@ -70,6 +70,10 @@ public class FyresModjam3 {
 		LanguageRegistry.addName(crystal, "Crystal");
 		
 		crystalItem = new ItemCrystal(crystal.blockID - 256);
+		
+		sceptre = new ItemSceptre(itemID).setUnlocalizedName("sceptre").setCreativeTab(CreativeTabs.tabCombat).setFull3D();
+		LanguageRegistry.addName(sceptre, "Sceptre");
+		
 	}
 	
 	@EventHandler
