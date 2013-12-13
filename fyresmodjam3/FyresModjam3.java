@@ -58,12 +58,13 @@ public class FyresModjam3 {
 		itemID = config.get(config.CATEGORY_GENERAL, "itemIDStart", itemID, "Sets the starting number for items IDs.").getInt();
 		
 		config.save();
+		
+		proxy.register();
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		TickRegistry.registerTickHandler(new CommonTickHandler(), Side.SERVER);
-		proxy.register();
 		NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
 		
 		crystal = new BlockCrystal(blockID).setCreativeTab(CreativeTabs.tabMaterials); //Remember to remove from creative tabs later!
