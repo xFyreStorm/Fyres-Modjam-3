@@ -4,8 +4,10 @@ import java.io.File;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
+import cpw.mods.fml.common.IPlayerTracker;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -15,6 +17,8 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -31,7 +35,7 @@ import fyresmodjam3.tileentities.TileEntityCrystalStand;
 
 @Mod(modid = "fyresmodjam3", name = "Fyres Modjam 3", version = "0.0.1a")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"FyresModjam3"}, packetHandler = PacketHandler.class)
-public class FyresModjam3 {
+public class FyresModjam3 implements IPlayerTracker {
 	
 	//Theme... laser shooting sceptres, lore, crystals which modify player and sceptre?
 	
@@ -68,6 +72,7 @@ public class FyresModjam3 {
 		
 		TickRegistry.registerTickHandler(new CommonTickHandler(), Side.SERVER);
 		NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
+		GameRegistry.registerPlayerTracker(this);
 		
 		//Blocks
 		
@@ -99,7 +104,17 @@ public class FyresModjam3 {
 	}
 	
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
-		
+	public void postInit(FMLPostInitializationEvent event) {}
+
+	
+	public void onPlayerLogin(EntityPlayer player) {
+		if(!player.getEntityData().hasKey("equippedCrystal")) {player.getEntityData().setInteger("equippedCrystal", -1);}
+		PacketDispatcher.sendPacketToPlayer(PacketHandler.newPacket(, new Object[] {"equippedCrystal", player.getEntityData().getInteger("equippedCrystal")}), (Player) player);
 	}
+
+	public void onPlayerLogout(EntityPlayer player) {}
+	
+	public void onPlayerChangedDimension(EntityPlayer player) {}
+
+	public void onPlayerRespawn(EntityPlayer player) {}
 }

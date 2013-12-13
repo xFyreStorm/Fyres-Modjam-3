@@ -7,6 +7,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -34,7 +35,7 @@ public class PacketHandler implements IPacketHandler {
 		public abstract void processServer(Player player, DataInputStream inputStream) throws Exception;
 	}
 	
-	public static final PacketType PLAY_SOUND = new PacketType(0) {
+	/*public static final PacketType PLAY_SOUND = new PacketType(0) {
 		public void processClient(Player player, DataInputStream inputStream) throws Exception {}
 		
 		public void processServer(Player player, DataInputStream inputStream) throws Exception {
@@ -45,6 +46,20 @@ public class PacketHandler implements IPacketHandler {
 			float z = inputStream.readFloat();
 			
 			Minecraft.getMinecraft().theWorld.playSound(x, y, z, "fyresmodjam3:" + sound, 1.0F, 1.0F, false);
+		}
+	};*/
+	
+	public static final PacketType UPDATE_STAT = new PacketType(1) {
+		public void processClient(Player player, DataInputStream inputStream) throws Exception {
+			updateStat((EntityPlayer) player, inputStream.readUTF(), inputStream.readUTF());
+		}
+
+		public void processServer(Player player, DataInputStream inputStream) throws Exception {
+			updateStat((EntityPlayer) player, inputStream.readUTF(), inputStream.readUTF());
+		}
+		
+		public void updateStat(EntityPlayer player, String statName, String value) {
+			player.getEntityData().setString(statName, value);
 		}
 	};
 	
