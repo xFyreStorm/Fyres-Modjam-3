@@ -27,8 +27,12 @@ public class EntityBeamRenderer extends RenderArrow {
 	@Override
 	protected void bindEntityTexture(Entity entity) {
 		super.bindEntityTexture(entity);
-		Color color = ItemCrystal.colors[entity.getDataWatcher().getWatchableObjectInt(17)];
-		GL11.glColor3f(red, green, blue);
+		int crystalType = entity.getDataWatcher().getWatchableObjectInt(17);
+		
+		if(crystalType >= 0) {
+			Color color = ItemCrystal.colors[crystalType % ItemCrystal.colors.length];
+			GL11.glColor3f((float) color.getRed() / 255.0F, (float) color.getGreen() / 255.0F, (float) color.getBlue() / 255.0F);
+		}
 	}
 
 }

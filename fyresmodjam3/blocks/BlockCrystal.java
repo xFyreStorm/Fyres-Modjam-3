@@ -10,6 +10,7 @@ import fyresmodjam3.tileentities.TileEntityCrystal;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,6 +28,11 @@ public class BlockCrystal extends BlockContainer {
 		super(par1, Material.glass);
 		this.setBlockBounds(0.25F, 0.1F, 0.25F, 0.75F, 0.9F, 0.75F);
 		// TODO set block bounds
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister iconRegister) {
+		this.blockIcon = iconRegister.registerIcon("fyresmodjam3:crystal");
 	}
 
 	public boolean canHarvestBlock(EntityPlayer player, int i) {
