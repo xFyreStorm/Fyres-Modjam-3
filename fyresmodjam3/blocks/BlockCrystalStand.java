@@ -38,6 +38,6 @@ public class BlockCrystalStand extends BlockContainer {
 	
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
-		this.blockIcon = iconRegister.registerIcon("fyresmodjam3:crystal_stand_item");
+		this.blockIcon = iconRegister.registerIcon("fyresmodjam3:crystal_stand_item"); // TODO fix rendering later
 	}
 }
