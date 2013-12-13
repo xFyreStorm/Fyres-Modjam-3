@@ -23,6 +23,7 @@ public class ItemCrystal extends ItemBlock {
 	public ItemCrystal(int par1) {
 		super(par1);
 		this.hasSubtypes = true;
+		this.setMaxStackSize(1);
 	}
 	
 	public void getSubItems(int id, CreativeTabs creativeTab, List list) {
