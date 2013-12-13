@@ -15,11 +15,13 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import fyresmodjam3.blocks.*;
+import fyresmodjam3.entities.EntityBeam;
 import fyresmodjam3.handlers.CommonTickHandler;
 import fyresmodjam3.handlers.GUIHandler;
 import fyresmodjam3.handlers.PacketHandler;
@@ -73,6 +75,10 @@ public class FyresModjam3 {
 		
 		sceptre = new ItemSceptre(itemID).setUnlocalizedName("sceptre").setCreativeTab(CreativeTabs.tabCombat).setFull3D();
 		LanguageRegistry.addName(sceptre, "Sceptre");
+		
+		EntityRegistry.registerGlobalEntityID(EntityBeam.class, "Beam", EntityRegistry.findGlobalUniqueEntityId());
+		EntityRegistry.registerModEntity(EntityBeam.class, "Beam", 0, instance, 128, 1, true);
+		LanguageRegistry.instance().addStringLocalization("entity.Beam.name", "en_US", "Beam");
 		
 	}
 	

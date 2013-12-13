@@ -11,15 +11,17 @@ import fyresmodjam3.tileentities.TileEntityCrystal;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntityBeamRenderer extends Render {
-	
-	private ModelArrow model = new ModelArrow();
+public class EntityBeamRenderer extends RenderArrow {
 	
 	public static ResourceLocation texture = new ResourceLocation("fyresmodjam3", "textures/beam.png");
+	protected ResourceLocation getEntityTexture(Entity entity) {return texture;}
 
 }

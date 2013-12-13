@@ -2,9 +2,13 @@ package fyresmodjam3.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import fyresmodjam3.entities.EntityBeam;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 
 public class ItemSceptre extends Item {
 
@@ -20,4 +24,13 @@ public class ItemSceptre extends Item {
 		this.itemIcon = texture;
 	}
 
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		if(!world.isRemote) {
+			EntityBeam beam = new EntityBeam(world, player, 2.0F);
+			world.spawnEntityInWorld(beam);
+		}
+		
+		return stack;
+	}
+	
 }
