@@ -63,9 +63,27 @@ public class PacketHandler implements IPacketHandler {
 		DataOutputStream outputStream = new DataOutputStream(bos);
 		
 		try {
+			outputStream.writeByte(type.getID());
+			
 			if(data != null) {
 				for(int i = 0; i < data.length; i++) {
-					if(data[i] instanceof Integer) {outputStream.writeInt((Integer) data[i]);}
+					if(data[i] instanceof Integer) {
+						outputStream.writeInt((Integer) data[i]);
+					} else if(data[i] instanceof int[]) {
+						for(int i2 = 0; i2 < ((int[]) data[i]).length; i2++) {outputStream.writeInt(((int[]) data[i])[i2]);}
+					} else if(data[i] instanceof Boolean) {
+						outputStream.writeBoolean((Boolean) data[i]);
+					} else if(data[i] instanceof String) {
+						outputStream.writeUTF((String) data[i]);
+					} else if(data[i] instanceof Byte) {
+						outputStream.writeByte((Byte) data[i]);
+					} else if(data[i] instanceof Float) {
+						outputStream.writeFloat((Float) data[i]);
+					} else if(data[i] instanceof Double) {
+						outputStream.writeDouble((Double) data[i]);
+					} else if(data[i] instanceof Character) {
+						outputStream.writeChar((Character) data[i]);
+					}
 				}
 			}
 		} catch (Exception e) {e.printStackTrace();}
