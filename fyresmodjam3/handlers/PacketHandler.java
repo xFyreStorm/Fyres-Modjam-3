@@ -6,6 +6,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -20,7 +21,7 @@ public class PacketHandler implements IPacketHandler {
 	public static abstract class PacketType {
 		private final byte id;
 		
-		PacketType(int i) {
+		public PacketType(int i) {
 			this.id = (byte) i;
 			
 			if(packetTypes[id] != null) {throw new RuntimeException("Duplicate packet IDs! (" + id + ")");}
@@ -29,9 +30,23 @@ public class PacketHandler implements IPacketHandler {
 		
 		public int getID() {return id;}
 		
-		public abstract void processClient(DataInputStream inputStream);
-		public abstract void processServer(DataInputStream inputStream);
+		public abstract void processClient(Player player, DataInputStream inputStream) throws Exception;
+		public abstract void processServer(Player player, DataInputStream inputStream) throws Exception;
 	}
+	
+	public static final PacketType PLAY_SOUND = new PacketType(0) {
+		public void processClient(Player player, DataInputStream inputStream) throws Exception {}
+		
+		public void processServer(Player player, DataInputStream inputStream) throws Exception {
+			String sound = inputStream.readUTF();
+			
+			float x = inputStream.readFloat();
+			float y = inputStream.readFloat();
+			float z = inputStream.readFloat();
+			
+			Minecraft.getMinecraft().theWorld.playSound(x, y, z, "fyresmodjam3:" + sound, 1.0F, 1.0F, false);
+		}
+	};
 	
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
@@ -46,7 +61,7 @@ public class PacketHandler implements IPacketHandler {
 				type = inputStream.readByte();
 				
 				if(packetTypes[type] != null) {
-					if(side == Side.SERVER) {packetTypes[type].processServer(inputStream);} else {packetTypes[type].processClient(inputStream);}
+					if(side == Side.SERVER) {packetTypes[type].processServer(player, inputStream);} else {packetTypes[type].processClient(player, inputStream);}
 				}
 			}
 		} catch (Exception e) {

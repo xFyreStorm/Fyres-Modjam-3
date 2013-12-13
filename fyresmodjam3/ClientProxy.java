@@ -1,6 +1,8 @@
 package fyresmodjam3;
 
+import net.minecraftforge.client.event.sound.SoundLoadEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.ForgeSubscribe;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -24,6 +26,13 @@ public class ClientProxy extends CommonProxy {
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityBeam.class, new EntityBeamRenderer());
 		
-		//Might need this later? MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(this);
+	}
+	
+	public static String[] sounds = new String[] {"beam1", "beam2", "beamHit"};
+	
+	@ForgeSubscribe
+	public void onSound(SoundLoadEvent event) {
+		for(String s : sounds) {event.manager.addSound("fyresmodjam3:" + s + ".wav");}
 	}
 }

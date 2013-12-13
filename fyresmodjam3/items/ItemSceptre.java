@@ -1,8 +1,10 @@
 package fyresmodjam3.items;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import fyresmodjam3.entities.EntityBeam;
+import fyresmodjam3.handlers.PacketHandler;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -28,6 +30,8 @@ public class ItemSceptre extends Item {
 		if(!world.isRemote) {
 			EntityBeam beam = new EntityBeam(world, player, 2.0F);
 			world.spawnEntityInWorld(beam);
+		} else {
+			PacketDispatcher.sendPacketToServer(PacketHandler.newPacket(PacketHandler.PLAY_SOUND, new Object[] {"beam1", player.posX, player.posY, player.posZ}));
 		}
 		
 		return stack;
