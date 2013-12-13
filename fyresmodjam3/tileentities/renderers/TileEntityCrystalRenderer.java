@@ -28,7 +28,6 @@ public class TileEntityCrystalRenderer extends TileEntitySpecialRenderer {
 		Block block = FyresModjam3.crystal;
 		World world = crystal.worldObj;
 		
-		
 		Tessellator tessellator = Tessellator.instance;
 		float f2 = block.getBlockBrightness(world, crystal.xCoord, crystal.yCoord, crystal.zCoord);
 		int l = world.getLightBrightnessForSkyBlocks(crystal.xCoord, crystal.yCoord, crystal.zCoord, 0);
@@ -37,9 +36,9 @@ public class TileEntityCrystalRenderer extends TileEntitySpecialRenderer {
 		tessellator.setColorOpaque_F(f2, f2, f2);
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) l1, (float) l2);
 		
-		GL11.glPushMatrix();
-		
-		GL11.glTranslatef(0.5F, 0.0F, 0.5F);
+		float f3 = (float) (world.getWorldInfo().getWorldTime() % 20) / 20.0F;
+		GL11.glTranslatef(0.5F, -0.33F + (f3 > 0.5F ? 0.25F - 0.25F * f3 : 0.25F * f3) , 0.5F);
+		GL11.glColor3f(0.5f, 0.0f, 0.0f);
 		
 		this.tileEntityRenderer.renderEngine.bindTexture(texture);
 		modelCrystal.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
