@@ -18,6 +18,7 @@ public class ItemCrystal extends ItemBlock {
 	public Icon texture;
 	
 	public static String[] names = new String[] {"Shining", "Void", "Firey"};
+	public static String[] particleNames = new String[] {"spell", "portal", "flame"};
 	public static Color[] colors = new Color[] {new Color(255, 255, 173), new Color(33, 0, 73), new Color(255, 55, 0)};
 	
 	public ItemCrystal(int par1) {

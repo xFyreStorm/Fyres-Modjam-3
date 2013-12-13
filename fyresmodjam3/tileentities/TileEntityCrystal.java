@@ -1,5 +1,8 @@
 package fyresmodjam3.tileentities;
 
+import java.util.Random;
+
+import fyresmodjam3.items.ItemCrystal;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -9,7 +12,15 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityCrystal extends TileEntity {
 	public TileEntityCrystal() {}
 	
-	public void updateEntity() {super.updateEntity();}
+	public static Random random = new Random();
+	
+	public void updateEntity() {
+		super.updateEntity();
+		
+		if(random.nextInt(4) == 0) {
+			this.worldObj.spawnParticle(ItemCrystal.particleNames[this.getBlockMetadata() % ItemCrystal.particleNames.length], this.xCoord + random.nextFloat(), this.yCoord + random.nextFloat(), this.zCoord + random.nextFloat(), 0.0f, 0.0f, 0.0f);
+		}
+	}
 	
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {super.writeToNBT(par1NBTTagCompound);}
 	
