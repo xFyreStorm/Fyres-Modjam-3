@@ -31,10 +31,8 @@ public class ItemSceptre extends Item {
 		if(!world.isRemote) {
 			EntityBeam beam = new EntityBeam(world, player, 2.0F);
 			world.spawnEntityInWorld(beam);
-			
-			Minecraft.getMinecraft().theWorld.playSoundAtEntity(player, "fyresmodjam3:beam1", 1.0F, 1.0F);
 		} else {
-			//PacketDispatcher.sendPacketToServer(PacketHandler.newPacket(PacketHandler.PLAY_SOUND, new Object[] {"beam1", player.posX, player.posY, player.posZ}));
+			PacketDispatcher.sendPacketToServer(PacketHandler.newPacket(PacketHandler.PLAY_SOUND, new Object[] {"beam1", player.posX, player.posY, player.posZ}));
 		}
 		
 		//Minecraft.getMinecraft().theWorld.playSoundAtEntity(player, "fyresmodjam3:beam1", 1.0F, 1.0F);

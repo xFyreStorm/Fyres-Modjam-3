@@ -58,12 +58,12 @@ public class FyresModjam3 {
 		itemID = config.get(config.CATEGORY_GENERAL, "itemIDStart", itemID, "Sets the starting number for items IDs.").getInt();
 		
 		config.save();
-		
-		proxy.register();
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		proxy.register();
+		
 		TickRegistry.registerTickHandler(new CommonTickHandler(), Side.SERVER);
 		NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
 		
