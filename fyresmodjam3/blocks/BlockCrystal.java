@@ -1,13 +1,18 @@
 package fyresmodjam3.blocks;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import fyresmodjam3.tileentities.TileEntityCrystal;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -15,8 +20,11 @@ public class BlockCrystal extends BlockContainer {
 
 	//need to add subtype information
 	
+	public static String[] names = new String[] {"Shining", "Void", "Firey"};
+	
 	public BlockCrystal(int par1) {
 		super(par1, Material.glass);
+		// TODO set block bounds
 	}
 
 	public boolean canHarvestBlock(EntityPlayer player, int i) {
@@ -25,13 +33,18 @@ public class BlockCrystal extends BlockContainer {
 	
 	@Override
 	public TileEntity createNewTileEntity(World world) {return new TileEntityCrystal();}
-	
+
 	public boolean hasTileEntity(int meta) {return true;}
-	
+
 	public boolean isOpaqueCube() {return false;}
-	
+
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess blockAccess, int i, int i2, int i3, int i4) {
 		return false;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(int id, CreativeTabs creativeTab, List list) {
+		for(int i = 0; i < names.length; i++) {list.add(new ItemStack(id, 1, i));}
 	}
 }
