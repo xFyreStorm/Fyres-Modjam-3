@@ -28,5 +28,4 @@ public class EntityBeam extends EntityArrow {
 	public void onUpdate() {super.onUpdate(); if(this.canBePickedUp != 0) {this.setDead();}}
 	
 	// TODO After modjam, or if I have time, make this actually a beam, rather than a single projectile :P
-
 }

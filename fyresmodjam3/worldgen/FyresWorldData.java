@@ -12,6 +12,10 @@ public class FyresWorldData extends WorldSavedData {
 	public FyresWorldData() {
 		super(key);
 	}
+	
+	public FyresWorldData(String key) {
+		super(key);
+	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbttagcompound) {
