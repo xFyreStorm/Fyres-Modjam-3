@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import fyresmodjam3.entities.EntityBeam;
 import fyresmodjam3.handlers.PacketHandler;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -33,6 +34,8 @@ public class ItemSceptre extends Item {
 		} else {
 			PacketDispatcher.sendPacketToServer(PacketHandler.newPacket(PacketHandler.PLAY_SOUND, new Object[] {"beam1", player.posX, player.posY, player.posZ}));
 		}
+		
+		//Minecraft.getMinecraft().theWorld.playSoundAtEntity(player, "fyresmodjam3:beam1", 1.0F, 1.0F);
 		
 		return stack;
 	}
