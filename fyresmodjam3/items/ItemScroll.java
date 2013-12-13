@@ -53,9 +53,9 @@ public class ItemScroll extends Item {
 			ItemStack book = new ItemStack(Item.writtenBook, 1, 0);
 			
 			NBTTagList pages = new NBTTagList("pages");
+			
 			for(int i = 2; i < scrollText[stack.getItemDamage() % scrollText.length].length; i++) {
 				pages.appendTag(new NBTTagString("" + (i - 1), scrollText[stack.getItemDamage() % scrollText.length][i]));
-				System.out.println("" + (i - 1) + ", " + scrollText[stack.getItemDamage() % scrollText.length][i]);
 			}
 			
 			book.setTagInfo("pages", pages);
