@@ -57,7 +57,7 @@ public class FyresModjam3 {
 		GameRegistry.registerTileEntity(TileEntityCrystal.class, "Crystal Tile Entity");
 		LanguageRegistry.addName(crystal, "Crystal");
 		
-		crystalItem = new ItemCrystal(itemID);
+		crystalItem = new ItemCrystal(crystal.blockID - 256);
 	}
 	
 	@EventHandler

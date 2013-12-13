@@ -44,9 +44,9 @@ public class ItemCrystal extends ItemBlock {
 		return colors[itemStack.getItemDamage() % colors.length].getRGB();
 	}
 
-	public int getBlockID() {
+	/*public int getBlockID() {
 		return FyresModjam3.crystal.blockID;
-	}
+	}*/ //Why is this even a thing if it isn't called in the numerous places that use block id? :P
 
 	@SideOnly(Side.CLIENT)
 	public int getSpriteNumber() {
