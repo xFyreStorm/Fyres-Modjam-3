@@ -35,7 +35,9 @@ public class ItemSceptre extends Item {
 			PacketDispatcher.sendPacketToServer(PacketHandler.newPacket(PacketHandler.PLAY_SOUND, new Object[] {"beam1", player.posX, player.posY, player.posZ}));
 		}
 		
-		//Minecraft.getMinecraft().theWorld.playSoundAtEntity(player, "fyresmodjam3:beam1", 1.0F, 1.0F);
+		//world.playSoundAtEntity(player, "fyresmodjam3:beam1", 1.0F, 1.0F);
+		player.playSound("fyresmodjam3:beam1", 1.0F, 1.0F);
+		player.playSound("random.xporb", 1.0F, 1.0F);
 		
 		return stack;
 	}
