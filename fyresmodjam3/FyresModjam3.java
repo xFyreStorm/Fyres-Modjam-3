@@ -109,7 +109,7 @@ public class FyresModjam3 implements IPlayerTracker {
 	
 	public void onPlayerLogin(EntityPlayer player) {
 		if(!player.getEntityData().hasKey("equippedCrystal")) {player.getEntityData().setInteger("equippedCrystal", -1);}
-		PacketDispatcher.sendPacketToPlayer(PacketHandler.newPacket(, new Object[] {"equippedCrystal", player.getEntityData().getInteger("equippedCrystal")}), (Player) player);
+		PacketDispatcher.sendPacketToPlayer(PacketHandler.newPacket(PacketHandler.UPDATE_STAT, new Object[] {"equippedCrystal", "int", player.getEntityData().getInteger("equippedCrystal")}), (Player) player);
 	}
 
 	public void onPlayerLogout(EntityPlayer player) {}

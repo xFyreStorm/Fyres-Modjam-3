@@ -2,6 +2,8 @@ package fyresmodjam3.entities;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 import fyresmodjam3.handlers.PacketHandler;
+import fyresmodjam3.items.ItemCrystal;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,15 +32,30 @@ public class EntityBeam extends EntityArrow {
 	
 	public void onUpdate() {
 		super.onUpdate();
-		if(this.arrowShake != 0) {this.setDead();}
 		
-		this.playSound("fyresmodjam3:beam1", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+		if(!worldObj.isRemote && this.arrowShake != 0) {this.setDead();}
 	}
 	
 	@Override
 	public void applyEntityCollision(Entity entity) {
 		super.applyEntityCollision(entity);
+		
+		if(!worldObj.isRemote && getCrystalType() == 2) {entity.setFire(15);}
 	}
+	
+	public void setDead() {
+		super.setDead();
+		
+		if(!worldObj.isRemote && getCrystalType() == 2 && worldObj.isAirBlock((int) posX, (int) posY, (int) posZ)) {
+			this.worldObj.setBlock((int) posX, (int) posY, (int) posZ, Block.fire.blockID);
+		}
+	}
+	
+	@Override
+	public void entityInit() {super.entityInit(); this.dataWatcher.addObject(17, -1);}
+	
+	public int getCrystalType() {return this.dataWatcher.getWatchableObjectInt(17);}
+	public void setCrystalType(int i) {this.dataWatcher.updateObject(17, i);}
 	
 	// TODO After modjam, or if I have time, make this actually a beam, rather than a single projectile :P
 }

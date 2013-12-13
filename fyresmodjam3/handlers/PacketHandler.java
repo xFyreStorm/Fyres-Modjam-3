@@ -31,8 +31,7 @@ public class PacketHandler implements IPacketHandler {
 		
 		public int getID() {return id;}
 		
-		public abstract void processClient(Player player, DataInputStream inputStream) throws Exception;
-		public abstract void processServer(Player player, DataInputStream inputStream) throws Exception;
+		public abstract void process(Side side, Player player, DataInputStream inputStream) throws Exception;
 	}
 	
 	/*public static final PacketType PLAY_SOUND = new PacketType(0) {
@@ -50,16 +49,15 @@ public class PacketHandler implements IPacketHandler {
 	};*/
 	
 	public static final PacketType UPDATE_STAT = new PacketType(1) {
-		public void processClient(Player player, DataInputStream inputStream) throws Exception {
-			updateStat((EntityPlayer) player, inputStream.readUTF(), inputStream.readUTF());
-		}
-
-		public void processServer(Player player, DataInputStream inputStream) throws Exception {
-			updateStat((EntityPlayer) player, inputStream.readUTF(), inputStream.readUTF());
-		}
-		
-		public void updateStat(EntityPlayer player, String statName, String value) {
-			player.getEntityData().setString(statName, value);
+		public void process(Side side, Player player, DataInputStream inputStream) throws Exception {
+			String statName = inputStream.readUTF();
+			String type = inputStream.readUTF();
+			
+			if(type.equals("int")) {((EntityPlayer) player).getEntityData().setInteger(statName, inputStream.readInt());}
+			else if(type.equals("boolean")) {((EntityPlayer) player).getEntityData().setBoolean(statName, inputStream.readBoolean());}
+			else if(type.equals("string")) {((EntityPlayer) player).getEntityData().setString(statName, inputStream.readUTF());}
+			
+			// TODO add more as needed
 		}
 	};
 	
@@ -74,10 +72,7 @@ public class PacketHandler implements IPacketHandler {
 			
 			if(inputStream != null) {
 				type = inputStream.readByte();
-				
-				if(packetTypes[type] != null) {
-					if(side == Side.SERVER) {packetTypes[type].processServer(player, inputStream);} else {packetTypes[type].processClient(player, inputStream);}
-				}
+				if(packetTypes[type] != null) {packetTypes[type].process(side, player, inputStream);}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -23,5 +23,12 @@ public class EntityBeamRenderer extends RenderArrow {
 	
 	public static ResourceLocation texture = new ResourceLocation("fyresmodjam3", "textures/beam.png");
 	protected ResourceLocation getEntityTexture(Entity entity) {return texture;}
+	
+	@Override
+	protected void bindEntityTexture(Entity entity) {
+		super.bindEntityTexture(entity);
+		Color color = ItemCrystal.colors[entity.getDataWatcher().getWatchableObjectInt(17)];
+		GL11.glColor3f(red, green, blue);
+	}
 
 }
