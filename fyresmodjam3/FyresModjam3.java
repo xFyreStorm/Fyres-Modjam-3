@@ -1,8 +1,11 @@
 package fyresmodjam3;
 
+import java.io.File;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -44,7 +47,13 @@ public class FyresModjam3 {
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		// TODO config stuff
+		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+		config.load();
+		
+		blockID = config.get(config.CATEGORY_GENERAL, "blockIDStart", blockID, "Sets the starting number for block IDs.").getInt();
+		itemID = config.get(config.CATEGORY_GENERAL, "itemIDStart", itemID, "Sets the starting number for items IDs.").getInt();
+		
+		config.save();
 	}
 	
 	@EventHandler
@@ -52,12 +61,12 @@ public class FyresModjam3 {
 		TickRegistry.registerTickHandler(new CommonTickHandler(), Side.SERVER);
 		proxy.register();
 		
-		crystal = new BlockCrystal(blockID).setCreativeTab(CreativeTabs.tabMaterials); //Remember to remove from creative tabs later!
+		crystalItem = new ItemCrystal(itemID);
+		
+		crystal = new BlockCrystal(itemID + 256 /*for itemblock purposes*/).setCreativeTab(CreativeTabs.tabMaterials); //Remember to remove from creative tabs later!
 		GameRegistry.registerBlock(crystal, "crystal");
 		GameRegistry.registerTileEntity(TileEntityCrystal.class, "Crystal Tile Entity");
 		LanguageRegistry.addName(crystal, "Crystal");
-		
-		crystalItem = new ItemCrystal(crystal.blockID - 256);
 	}
 	
 	@EventHandler
