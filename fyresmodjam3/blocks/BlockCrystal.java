@@ -1,5 +1,6 @@
 package fyresmodjam3.blocks;
 
+import java.awt.Color;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
@@ -19,8 +20,6 @@ import net.minecraft.world.World;
 public class BlockCrystal extends BlockContainer {
 
 	//need to add subtype information
-	
-	public static String[] names = new String[] {"Shining", "Void", "Firey"};
 	
 	public BlockCrystal(int par1) {
 		super(par1, Material.glass);
@@ -43,8 +42,8 @@ public class BlockCrystal extends BlockContainer {
 		return false;
 	}
 
-	@SideOnly(Side.CLIENT)
+	/*@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs creativeTab, List list) {
 		for(int i = 0; i < names.length; i++) {list.add(new ItemStack(id, 1, i));}
-	}
+	}*/
 }

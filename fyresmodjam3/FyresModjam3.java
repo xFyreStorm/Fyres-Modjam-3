@@ -18,6 +18,7 @@ import cpw.mods.fml.relauncher.Side;
 import fyresmodjam3.blocks.BlockCrystal;
 import fyresmodjam3.handlers.CommonTickHandler;
 import fyresmodjam3.handlers.PacketHandler;
+import fyresmodjam3.items.ItemCrystal;
 import fyresmodjam3.tileentities.TileEntityCrystal;
 
 @Mod(modid = "fyresmodjam3", name = "Fyres Modjam 3", version = "0.0.1a")
@@ -28,11 +29,12 @@ public class FyresModjam3 {
 	
 	//reminders
 	public static Item sceptre;
+	public static Item crystalItem;
 	
 	public static Block crystal; //not yet sure how many blocks I'll need
 	public static Block crystalStand;
 	
-	public static int blockID = 1888;
+	public static int blockID = 1888, itemID = 1888;
 	
 	@SidedProxy(clientSide = "fyresmodjam3.ClientProxy", serverSide = "fyresmodjam3.CommonProxy")
 	public static CommonProxy proxy;
@@ -42,7 +44,7 @@ public class FyresModjam3 {
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		
+		// TODO config stuff
 	}
 	
 	@EventHandler
@@ -50,10 +52,12 @@ public class FyresModjam3 {
 		TickRegistry.registerTickHandler(new CommonTickHandler(), Side.SERVER);
 		proxy.register();
 		
-		crystal = new BlockCrystal(blockID).setCreativeTab(CreativeTabs.tabBlock); //Remember to remove from creative tabs later!
+		crystal = new BlockCrystal(blockID);
 		GameRegistry.registerBlock(crystal, "crystal");
 		GameRegistry.registerTileEntity(TileEntityCrystal.class, "Crystal Tile Entity");
 		LanguageRegistry.addName(crystal, "Crystal");
+		
+		crystalItem = new ItemCrystal(itemID).setCreativeTab(CreativeTabs.tabMaterials); //Remember to remove from creative tabs later!
 	}
 	
 	@EventHandler

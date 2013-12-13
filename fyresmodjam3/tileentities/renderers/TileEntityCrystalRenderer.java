@@ -1,8 +1,11 @@
 package fyresmodjam3.tileentities.renderers;
 
+import java.awt.Color;
+
 import org.lwjgl.opengl.GL11;
 
 import fyresmodjam3.FyresModjam3;
+import fyresmodjam3.items.ItemCrystal;
 import fyresmodjam3.models.ModelCrystal;
 import fyresmodjam3.tileentities.TileEntityCrystal;
 import net.minecraft.block.Block;
@@ -38,7 +41,9 @@ public class TileEntityCrystalRenderer extends TileEntitySpecialRenderer {
 		
 		float f3 = (float) (world.getWorldInfo().getWorldTime() % 20) / 20.0F;
 		GL11.glTranslatef(0.5F, -0.33F + (f3 > 0.5F ? 0.25F - 0.25F * f3 : 0.25F * f3) , 0.5F);
-		GL11.glColor3f(0.5f, 0.0f, 0.0f);
+		
+		Color color = ItemCrystal.colors[crystal.getBlockMetadata() % ItemCrystal.colors.length];
+		GL11.glColor3f((float) color.getRed() / 255.0F, (float) color.getGreen() / 255.0F, (float) color.getBlue() / 255.0F);
 		
 		this.tileEntityRenderer.renderEngine.bindTexture(texture);
 		modelCrystal.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
