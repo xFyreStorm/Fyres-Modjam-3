@@ -31,11 +31,13 @@ public class ItemSceptre extends Item {
 		if(!world.isRemote) {
 			EntityBeam beam = new EntityBeam(world, player, 2.0F);
 			world.spawnEntityInWorld(beam);
-		} else {
-			PacketDispatcher.sendPacketToServer(PacketHandler.newPacket(PacketHandler.PLAY_SOUND, new Object[] {"beam1", player.posX, player.posY, player.posZ}));
-		}
+			
+			world.playSoundAtEntity(player, "fyresmodjam3:beamB", 0.75F, 0.5F);
+		}/* else {
+			PacketDispatcher.sendPacketToServer(PacketHandler.newPacket(PacketHandler.PLAY_SOUND, new Object[] {"beamB", player.posX, player.posY, player.posZ}));
+		}*/
 		
-		//world.playSoundAtEntity(player, "fyresmodjam3:beam1", 1.0F, 1.0F);
+		//world.playSoundAtEntity(player, "fyresmodjam3:beamB", 0.75F, 0.5F);
 		//player.playSound("fyresmodjam3:beam1", 1.0F, 1.0F);
 		//player.playSound("random.xporb", 1.0F, 1.0F);
 		
