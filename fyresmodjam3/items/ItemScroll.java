@@ -14,10 +14,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
-public class ItemScroll extends ItemEditableBook {
+public class ItemScroll extends Item {
 	
 	public String[][] scrollText = new String[][] {
 			{"Author", "Scroll #1", "Words"},
@@ -51,13 +53,14 @@ public class ItemScroll extends ItemEditableBook {
 			ItemStack book = new ItemStack(Item.writtenBook, 1, 0);
 			
 			NBTTagList pages = new NBTTagList("pages");
-			for(int i = 2; i < scrollText[book.getItemDamage() % scrollText.length].length - 2; i++) {
-				pages.appendTag(new NBTTagString("" + (i - 1), scrollText[book.getItemDamage() % scrollText.length][i]));
+			for(int i = 2; i < scrollText[stack.getItemDamage() % scrollText.length].length; i++) {
+				pages.appendTag(new NBTTagString("" + (i - 1), scrollText[stack.getItemDamage() % scrollText.length][i]));
+				System.out.println("" + (i - 1) + ", " + scrollText[stack.getItemDamage() % scrollText.length][i]);
 			}
 			
 			book.setTagInfo("pages", pages);
-			book.setTagInfo("author", new NBTTagString("author", scrollText[book.getItemDamage() % scrollText.length][0]));
-			book.setTagInfo("title", new NBTTagString("title", scrollText[book.getItemDamage() % scrollText.length][1]));
+			book.setTagInfo("author", new NBTTagString("author", scrollText[stack.getItemDamage() % scrollText.length][0]));
+			book.setTagInfo("title", new NBTTagString("title", scrollText[stack.getItemDamage() % scrollText.length][1]));
 			
 			NBTTagCompound bookTag = new NBTTagCompound();
 			book.writeToNBT(bookTag);
@@ -73,5 +76,14 @@ public class ItemScroll extends ItemEditableBook {
 		NBTTagCompound bookTag = par1ItemStack.getTagCompound().getCompoundTag("book");
         if(bookTag != null) {par3EntityPlayer.displayGUIBook(ItemStack.loadItemStackFromNBT(bookTag));}
         return par1ItemStack;
+    }
+	
+	public String getItemDisplayName(ItemStack par1ItemStack) {
+        return scrollText[par1ItemStack.getItemDamage() % scrollText.length][1];
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+        par3List.add(EnumChatFormatting.GRAY + scrollText[par1ItemStack.getItemDamage() % scrollText.length][0]);
     }
 }
