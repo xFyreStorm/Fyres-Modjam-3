@@ -6,6 +6,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import fyresmodjam3.FyresModjam3;
+import fyresmodjam3.items.ItemCrystal;
 import fyresmodjam3.tileentities.TileEntityCrystal;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -32,7 +33,7 @@ public class BlockCrystal extends BlockContainer {
 	
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
-		this.blockIcon = iconRegister.registerIcon("fyresmodjam3:crystal");
+		this.blockIcon = ((ItemCrystal) FyresModjam3.crystalItem).texture;
 	}
 
 	public boolean canHarvestBlock(EntityPlayer player, int i) {

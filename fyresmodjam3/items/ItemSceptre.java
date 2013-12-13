@@ -30,6 +30,7 @@ public class ItemSceptre extends Item {
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		if(!world.isRemote) {
 			EntityBeam beam = new EntityBeam(world, player, 2.0F);
+			if(player.getEntityData().hasKey("equippedCrystal")) {beam.setCrystalType(player.getEntityData().getInteger("equippedCrystal"));}
 			world.spawnEntityInWorld(beam);
 			
 			world.playSoundAtEntity(player, "fyresmodjam3:beamB", 0.75F, 0.5F);

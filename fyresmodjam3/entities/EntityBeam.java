@@ -40,7 +40,7 @@ public class EntityBeam extends EntityArrow {
 	public void applyEntityCollision(Entity entity) {
 		super.applyEntityCollision(entity);
 		
-		if(!worldObj.isRemote && getCrystalType() == 2) {entity.setFire(15);}
+		if(!worldObj.isRemote && getCrystalType() == 2) {entity.setFire(100);}
 	}
 	
 	public void setDead() {
