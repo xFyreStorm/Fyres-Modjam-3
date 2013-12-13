@@ -5,6 +5,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import fyresmodjam3.FyresModjam3;
 import fyresmodjam3.tileentities.TileEntityCrystal;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -42,6 +43,14 @@ public class BlockCrystal extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess blockAccess, int i, int i2, int i3, int i4) {
 		return false;
+	}
+	
+	public int idPicked(World world, int i, int i2, int i3) {
+		return FyresModjam3.crystalItem.itemID;
+	}
+	
+	public int getDamageValue(World world, int i, int i2, int i3) {
+		return world.getBlockMetadata(i, i2, i3);
 	}
 	
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {

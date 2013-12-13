@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import fyresmodjam3.tileentities.TileEntityCrystalStand;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
@@ -33,5 +34,10 @@ public class BlockCrystalStand extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess blockAccess, int i, int i2, int i3, int i4) {
 		return false;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister iconRegister) {
+		this.blockIcon = iconRegister.registerIcon("fyresmodjam3:crystal_stand_item");
 	}
 }

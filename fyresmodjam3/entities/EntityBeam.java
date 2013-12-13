@@ -29,7 +29,7 @@ public class EntityBeam extends EntityArrow {
 	
 	public void onUpdate() {
 		super.onUpdate();
-		if(this.canBePickedUp != 0) {this.setDead();}
+		if(this.arrowShake != 0) {this.setDead();}
 		
 		this.playSound("fyresmodjam3:beam1", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 	}
