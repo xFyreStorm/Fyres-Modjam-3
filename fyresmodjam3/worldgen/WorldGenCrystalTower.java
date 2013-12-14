@@ -1,5 +1,7 @@
 package fyresmodjam3.worldgen;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -10,12 +12,19 @@ import fyresmodjam3.FyresModjam3;
 import fyresmodjam3.handlers.CommonTickHandler;
 
 public class WorldGenCrystalTower implements IWorldGenerator {
+	
+	public static HashMap<Integer, FyresWorldData> worldData = new HashMap<Integer, FyresWorldData>();
+	public static ArrayList<Integer> tested = new ArrayList<Integer>();
 
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		if((world.provider.dimensionId == 0 && chunkX == CommonTickHandler.worldData.overworldCrystalChunkX && chunkZ == CommonTickHandler.worldData.overworldCrystalChunkZ) ||
+		if(worldData.get(world.provider.dimensionId) == null && !tested.contains(world.provider.dimensionId)) {worldData.put(world.provider.dimensionId, FyresWorldData.forWorld(world)); tested.add(world.provider.dimensionId);}
+		FyresWorldData fyresWorldData = worldData.get(world.provider.dimensionId);
+		
+		/*if((world.provider.dimensionId == 0 && chunkX == CommonTickHandler.worldData.overworldCrystalChunkX && chunkZ == CommonTickHandler.worldData.overworldCrystalChunkZ) ||
 		   (world.provider.dimensionId == -1 && chunkX == CommonTickHandler.worldData.netherCrystalChunkX && chunkZ == CommonTickHandler.worldData.netherCrystalChunkZ) ||
-		   (world.provider.dimensionId == 1 && chunkX == CommonTickHandler.worldData.endCrystalChunkX && chunkZ == CommonTickHandler.worldData.endCrystalChunkZ)) {
-			
+		   (world.provider.dimensionId == 1 && chunkX == CommonTickHandler.worldData.endCrystalChunkX && chunkZ == CommonTickHandler.worldData.endCrystalChunkZ)) {*/
+		
+		if(fyresWorldData != null && chunkX == fyresWorldData.crystalChunkX && chunkZ == fyresWorldData.crystalChunkZ) {	
 			for(int x = 0; x < 16; x++) {
 				for(int z = 0; z < 16; z++) {
 					for(int y = 0; y < 256; y++) {

@@ -15,10 +15,7 @@ public class CommonTickHandler implements ITickHandler {
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
 		if(type.equals(EnumSet.of(TickType.WORLDLOAD))) {
 			for(int i = 0; i < tickData.length; i++) {
-				if(tickData[i] instanceof World && ((World) tickData[i]).provider.dimensionId == 0) {
-					worldData = FyresWorldData.forWorld((World) tickData[i]);
-					worldData.markDirty();
-				}
+				if(tickData[i] instanceof World) {FyresWorldData.forWorld((World) tickData[i]).markDirty();}
 			}
 		} else if(type.equals(EnumSet.of(TickType.SERVER))) {tick();}
 	}
