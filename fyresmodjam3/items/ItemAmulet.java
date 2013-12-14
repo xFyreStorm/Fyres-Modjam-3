@@ -37,7 +37,7 @@ public class ItemAmulet extends Item {
 	
 	@SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack par1ItemStack, int par2) {
-		return color[par1ItemStack.getItemDamage() % color.length].getRGB();
+		return par2 != 0 ? color[par1ItemStack.getItemDamage() % color.length].getRGB() : Color.WHITE.getRGB();
     }
 
 	@SideOnly(Side.CLIENT)
@@ -45,8 +45,11 @@ public class ItemAmulet extends Item {
 		return true;
 	}
 	
+	public static int renderPass = 0;
+	
 	@SideOnly(Side.CLIENT)
 	public Icon getIconFromDamageForRenderPass(int i, int i2) {
+		renderPass = i2;
 		return i2 > 0 ? overlays[i] : icons[i];
 	}
 	
