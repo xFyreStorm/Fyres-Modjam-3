@@ -59,7 +59,7 @@ public class FyresWorldData extends WorldSavedData {
 		crystalChunkX = 20 + world.rand.nextInt(60);
 		crystalChunkZ = 20 + world.rand.nextInt(60);
 		
-		System.out.println(world.provider.dimensionId + ", " + crystalChunkX + ", " + crystalChunkZ);
+		System.out.println(world.provider.dimensionId + ", " + (crystalChunkX * 16) + ", " + (crystalChunkZ * 16));
 		
 		// TODO figure out best value for end and nether chunks
 	}
