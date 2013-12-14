@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 public class ItemScroll extends Item {
 	
 	public static String[][] scrollText = new String[][] {
-			{"Unkown Adventurer", "Scroll #1", "This morning I fell out of the sky. Where am I? Why me?", "Empty handed, and alone, I'm made my decision to set out, however unsure of what I might find."},
+			{"Unkown Adventurer", "Scroll #1", "This morning I fell out of the sky. I am unsure of where I am, or for what purpose, but I've begun construction on a small shelter for the time being.", "I've now spent days scouting the nearby area with no luck. Still alone, I'm made my decision to set out further, however unsure of what I might find.", "I've discovered an ancient stronghold. Writtings of end times cover the walls. What could it mean? And who built this place, why was it here? And I have the unsettling feeling I'm not alone in these ruins..."},
 			{"Village Elder", "Scroll #2", "Words"},
 			{"Pigman Warrior", "Scroll #3", "Words"},
 			{"Enderman Urchin", "Scroll #4", "Words"},
