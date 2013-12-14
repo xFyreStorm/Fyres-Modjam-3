@@ -63,8 +63,7 @@ public class WorldGenCrystalTower implements IWorldGenerator {
 				if(y >= 2 && y < 252 - (world.provider.dimensionId == -1 ? 132 : 0) && y % 6 == 3) {
 					world.setBlock(chunkX * 16 + 8 - 5, y, chunkZ * 16 + 8, Block.torchWood.blockID);
 					world.setBlock(chunkX * 16 + 8, y, chunkZ * 16 + 8 - 5, Block.torchWood.blockID, 3, 0);
-					
-					world.setBlock(chunkX * 16 + 8 + 5, y, chunkZ * 16 + 8, Block.torchWood.blockID, 1, 0);
+					world.setBlock(chunkX * 16 + 8 + 5, y, chunkZ * 16 + 8, Block.torchWood.blockID, 2, 0);
 					world.setBlock(chunkX * 16 + 8, y, chunkZ * 16 + 8 + 5, Block.torchWood.blockID, 4, 0);
 				}
 			}
