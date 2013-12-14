@@ -63,6 +63,10 @@ public class BlockCrystal extends BlockContainer {
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
 		par1World.setBlockMetadataWithNotify(par2, par3, par4, par6ItemStack.getItemDamage(), 0);
 	}
+	
+	public int getLightValue(IBlockAccess world, int x, int y, int z) {
+		return 10;
+	}
 
 	/*@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs creativeTab, List list) {

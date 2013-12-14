@@ -9,6 +9,12 @@ public class FyresWorldData extends WorldSavedData {
 
 	public static String key = "FyresModjam3";
 	
+	public int overworldCrystalChunkX, overworldCrystalChunkY, overworldCrystalChunkZ;
+	public int netherCrystalChunkX, netherCrystalChunkY, netherCrystalChunkZ;
+	public int endCrystalChunkX, endCrystalChunkY, endCrystalChunkZ;
+	
+	public boolean overworldCrystalSpawned = false, netherCrystalSpawned = false, endCrystalSpawned = false;
+	
 	public FyresWorldData() {
 		super(key);
 	}
