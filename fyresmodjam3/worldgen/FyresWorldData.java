@@ -20,9 +20,9 @@ public class FyresWorldData extends WorldSavedData {
 		super(key + dimensions[dimension + 1]);
 	}
 	
-	/*public FyresWorldData(String key) {
+	public FyresWorldData(String key) {
 		super(key);
-	}*/
+	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbttagcompound) {
@@ -59,7 +59,10 @@ public class FyresWorldData extends WorldSavedData {
 		crystalChunkX = 20 + world.rand.nextInt(60);
 		crystalChunkZ = 20 + world.rand.nextInt(60);
 		
-		System.out.println(world.provider.dimensionId + ", " + (crystalChunkX * 16) + ", " + (crystalChunkZ * 16));
+		if(world.provider.dimensionId == 1) {
+			crystalChunkX /= 10;
+			crystalChunkZ /= 10;
+		}
 		
 		// TODO figure out best value for end and nether chunks
 	}

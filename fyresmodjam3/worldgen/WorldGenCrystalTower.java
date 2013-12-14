@@ -39,7 +39,7 @@ public class WorldGenCrystalTower implements IWorldGenerator {
 						int dist = (x - 8) * (x - 8) + (z - 8) * (z - 8);
 						
 						if(y < 2) {
-							world.setBlock(xF, y, zF, Block.bedrock.blockID);
+							if(dist <= 49 && world.provider.dimensionId != 1) {world.setBlock(xF, y, zF, Block.bedrock.blockID);}
 						} else if(dist > 25 && dist <= 49 || (dist <= 49 && (y == 2 || y == 255 - (world.provider.dimensionId == -1 ? 132 : 0)))) {
 							world.setBlock(xF, y, zF, (y == 255 && dist <= 25 && world.provider.dimensionId != -1) ? Block.glass.blockID : (world.provider.dimensionId == 0 ? (random.nextBoolean() ? Block.cobblestoneMossy.blockID : Block.cobblestone.blockID) : (world.provider.dimensionId == -1 ? Block.netherBrick.blockID : Block.obsidian.blockID)));
 						} else if(x == 8 && z == 8 && (y == 3 || y == 4)) {
@@ -54,11 +54,11 @@ public class WorldGenCrystalTower implements IWorldGenerator {
 							world.setBlockToAir(xF, y, zF);
 						}
 						
-						if(y % 6 == 3 && x == 8 && z == 8) {
-							world.setBlock(xF - 5, y, zF - 5, Block.torchWood.blockID);
-							world.setBlock(xF + 5, y, zF - 5, Block.torchWood.blockID);
-							world.setBlock(xF - 5, y, zF + 5, Block.torchWood.blockID);
-							world.setBlock(xF + 5, y, zF + 5, Block.torchWood.blockID);
+						if(y >= 2 && y < 252 - (world.provider.dimensionId == -1 ? 132 : 0) && y % 6 == 3 && x == 8 && z == 8) {
+							world.setBlock(xF - 5, y, zF, Block.torchWood.blockID);
+							world.setBlock(xF + 5, y, zF, Block.torchWood.blockID, 2, 0);
+							world.setBlock(xF, y, zF - 5, Block.torchWood.blockID, 3, 0);
+							world.setBlock(xF, y, zF + 5, Block.torchWood.blockID, 1, 0);
 						}
 
 						// TODO Staircase from bottom of world to top? Netherbrick version of this for the end, stone for overworld? :P
