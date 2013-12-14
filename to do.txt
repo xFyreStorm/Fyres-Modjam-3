@@ -1,5 +1,6 @@
 Sceptre item
 World Data for crystal locations
-Structures to hold crystals
+Structures to hold crystals (tower + staircase)
 Custom equipment slot / GUI for crystals
 Lore scrolls
+Talismans that lead to tower locations

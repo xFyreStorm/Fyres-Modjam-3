@@ -32,7 +32,7 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 	
-	public static String[] sounds = new String[] {"beamA", "beamB", "beamHit"};
+	public static String[] sounds = new String[] {"beamB", "beamHit"};
 	
 	@ForgeSubscribe
 	public void onSound(SoundLoadEvent event) {
