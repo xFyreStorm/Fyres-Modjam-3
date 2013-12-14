@@ -14,6 +14,7 @@ import net.minecraft.util.Icon;
 public class ItemAmulet extends Item {
 
 	public static String[] names = {"Star", "Fire"};
+	public static Color[] color = {new Color(255, 251, 175), new Color(255, 82, 5)};
 	
 	public Icon[] icons = new Icon[names.length];
 	public Icon[] overlays = new Icon[names.length];
@@ -34,10 +35,10 @@ public class ItemAmulet extends Item {
         this.itemIcon = icons[0];
     }
 	
-	/*@SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack par1ItemStack, int par2) {
-		return ;
-    }*/
+		return color[par1ItemStack.getItemDamage() % color.length].getRGB();
+    }
 
 	@SideOnly(Side.CLIENT)
 	public boolean requiresMultipleRenderPasses() {
