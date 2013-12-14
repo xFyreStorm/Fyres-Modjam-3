@@ -32,6 +32,7 @@ import fyresmodjam3.handlers.PacketHandler;
 import fyresmodjam3.items.*;
 import fyresmodjam3.tileentities.TileEntityCrystal;
 import fyresmodjam3.tileentities.TileEntityCrystalStand;
+import fyresmodjam3.worldgen.WorldGenCrystalTower;
 
 @Mod(modid = "fyresmodjam3", name = "Fyres Modjam 3", version = "0.0.1a")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"FyresModjam3"}, packetHandler = PacketHandler.class)
@@ -73,6 +74,7 @@ public class FyresModjam3 implements IPlayerTracker {
 		TickRegistry.registerTickHandler(new CommonTickHandler(), Side.SERVER);
 		NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
 		GameRegistry.registerPlayerTracker(this);
+		GameRegistry.registerWorldGenerator(new WorldGenCrystalTower());
 		
 		//Blocks
 		
