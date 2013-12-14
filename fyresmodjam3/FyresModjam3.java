@@ -1,12 +1,18 @@
 package fyresmodjam3;
 
 import java.io.File;
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import cpw.mods.fml.common.IPlayerTracker;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -50,6 +56,8 @@ public class FyresModjam3 implements IPlayerTracker {
 	
 	public static int blockID = 1888, itemID = 1888;
 	
+	public static Random r = new Random();
+	
 	@SidedProxy(clientSide = "fyresmodjam3.ClientProxy", serverSide = "fyresmodjam3.CommonProxy")
 	public static CommonProxy proxy;
 	
@@ -70,6 +78,7 @@ public class FyresModjam3 implements IPlayerTracker {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		proxy.register();
+		MinecraftForge.EVENT_BUS.register(this);
 		
 		TickRegistry.registerTickHandler(new CommonTickHandler(), Side.SERVER);
 		NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
@@ -119,4 +128,11 @@ public class FyresModjam3 implements IPlayerTracker {
 	public void onPlayerChangedDimension(EntityPlayer player) {}
 
 	public void onPlayerRespawn(EntityPlayer player) {}
+	
+	@ForgeSubscribe
+	public void livingDeath(LivingDeathEvent event) {
+		if(!event.entity.worldObj.isRemote && !(event.entity instanceof IMob) && r.nextInt(20) == 0) {
+			event.entity.entityDropItem(new ItemStack(scroll, 1, r.nextInt(ItemScroll.scrollText.length)), 0.0F);
+		}
+	}
 }

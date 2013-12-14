@@ -21,11 +21,11 @@ import net.minecraft.world.World;
 
 public class ItemScroll extends Item {
 	
-	public String[][] scrollText = new String[][] {
-			{"Author", "Scroll #1", "Words"},
-			{"Author", "Scroll #2", "Words"},
-			{"Author", "Scroll #3", "Words"},
-			{"Author", "Scroll #4", "Words"},
+	public static String[][] scrollText = new String[][] {
+			{"Unkown Adventurer", "Scroll #1", "This morning I fell out of the sky. Where am I? Why me?", "Empty handed, and alone, I'm made my decision to set out, however unsure of what I might find."},
+			{"Village Elder", "Scroll #2", "Words"},
+			{"Pigman Warrior", "Scroll #3", "Words"},
+			{"Enderman Urchin", "Scroll #4", "Words"},
 			{"Author", "Scroll #5", "Words"}
 	};
 	

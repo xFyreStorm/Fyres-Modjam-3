@@ -67,17 +67,17 @@ public class ItemCrystal extends ItemBlock {
 	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
 
-		/*int value = (!par3EntityPlayer.getEntityData().hasKey("equippedCrystal") || par3EntityPlayer.getEntityData().getInteger("equippedCrystal") != par1ItemStack.getItemDamage()) ? par1ItemStack.getItemDamage() : -1;
+		int value = (!par3EntityPlayer.getEntityData().hasKey("equippedCrystal") || par3EntityPlayer.getEntityData().getInteger("equippedCrystal") != par1ItemStack.getItemDamage()) ? par1ItemStack.getItemDamage() : -1;
 		
 		if(par2World.isRemote) {
 			PacketDispatcher.sendPacketToServer(PacketHandler.newPacket(PacketHandler.UPDATE_STAT, new Object[] {"equippedCrystal", "int", par1ItemStack.getItemDamage()}));
 		} else {
 			PacketDispatcher.sendPacketToPlayer(PacketHandler.newPacket(PacketHandler.UPDATE_STAT, new Object[] {"equippedCrystal", "int", par1ItemStack.getItemDamage()}), (Player) par3EntityPlayer);
-		}*/
-		
-		if(par2World.isRemote) {
-			par3EntityPlayer.openGui(FyresModjam3.instance, 1, par2World, (int) par3EntityPlayer.posX, (int) par3EntityPlayer.posY, (int) par3EntityPlayer.posZ);
 		}
+		
+		/*if(par2World.isRemote) {
+			par3EntityPlayer.openGui(FyresModjam3.instance, 1, par2World, (int) par3EntityPlayer.posX, (int) par3EntityPlayer.posY, (int) par3EntityPlayer.posZ);
+		}*/
 		
 		return par1ItemStack;
 	}
