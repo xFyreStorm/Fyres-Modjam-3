@@ -13,9 +13,11 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class GUICrystalEquipment extends GuiScreen {
 	
-	public GUICrystalEquipment() {
+	public GUICrystalEquipment() {}
+	
+	public void initButtons() {
 		this.buttonList.clear();
-		this.buttonList.add(new GuiButton(1, this.width/2 - 75, this.height - 75, this.width/2 + 150, 50, "Exit"));
+		this.buttonList.add(new GuiButton(1, this.width/2 - 75, 50, 150, 20, "Exit"));
 	}
 	
 	@Override
@@ -27,11 +29,13 @@ public class GUICrystalEquipment extends GuiScreen {
 		int scaledWidth = resolutionSettings.getScaledWidth();
 		int scaledHeight = resolutionSettings.getScaledHeight();
 		
-		GL11.glPushMatrix();
-		
-		this.drawCenteredString(fontRenderer, "Test", scaledWidth/2, 50, Color.WHITE.getRGB());
+		if(buttonList.isEmpty()) {initButtons();}
 		
 		super.drawScreen(i, i2, f);
+		
+		GL11.glPushMatrix();
+		
+		this.drawCenteredString(fontRenderer, "Test", scaledWidth/2, 10, Color.WHITE.getRGB());
 		
 		GL11.glPopMatrix();
 	}
