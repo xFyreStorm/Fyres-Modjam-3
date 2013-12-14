@@ -50,6 +50,7 @@ public class FyresModjam3 implements IPlayerTracker {
 	public static Item sceptre;
 	public static Item crystalItem;
 	public static Item scroll;
+	public static Item amulet;
 	
 	public static Block crystal; //not yet sure how many blocks I'll need
 	public static Block crystalStand;
@@ -107,6 +108,9 @@ public class FyresModjam3 implements IPlayerTracker {
 		
 		scroll = new ItemScroll(itemID + 1).setUnlocalizedName("scroll").setCreativeTab(CreativeTabs.tabMisc);
 		LanguageRegistry.addName(scroll, "Scroll");
+		
+		amulet = new ItemAmulet(itemID + 2).setUnlocalizedName("amulet").setCreativeTab(CreativeTabs.tabMisc);
+		LanguageRegistry.addName(amulet, "Amulet");
 		
 		EntityRegistry.registerGlobalEntityID(EntityBeam.class, "Beam", EntityRegistry.findGlobalUniqueEntityId());
 		EntityRegistry.registerModEntity(EntityBeam.class, "Beam", 0, instance, 128, 1, true);

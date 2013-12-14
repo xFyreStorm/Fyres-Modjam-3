@@ -36,6 +36,7 @@ public class ItemScroll extends Item {
 	public ItemScroll(int par1) {
 		super(par1);
 		this.hasSubtypes = true;
+		this.maxStackSize = 1;
 	}
 	
 	@SideOnly(Side.CLIENT)
