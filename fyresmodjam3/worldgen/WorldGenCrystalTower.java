@@ -41,12 +41,12 @@ public class WorldGenCrystalTower implements IWorldGenerator {
 						if(y < 2) {
 							if(dist <= 49 && world.provider.dimensionId != 1) {world.setBlock(xF, y, zF, Block.bedrock.blockID);}
 						} else if(dist > 25 && dist <= 49 || (dist <= 49 && (y == 2 || y == 255 - (world.provider.dimensionId == -1 ? 132 : 0)))) {
-							world.setBlock(xF, y, zF, (y == 255 && dist <= 25 && world.provider.dimensionId != -1) ? Block.glass.blockID : (world.provider.dimensionId == 0 ? (random.nextBoolean() ? Block.cobblestoneMossy.blockID : Block.cobblestone.blockID) : (world.provider.dimensionId == -1 ? Block.netherBrick.blockID : Block.obsidian.blockID)));
+							world.setBlock(xF, y, zF, (y == 255 && dist <= 25 && world.provider.dimensionId != -1) ? Block.glass.blockID : (world.provider.dimensionId == 0 ? Block.stoneBrick.blockID : (world.provider.dimensionId == -1 ? Block.netherBrick.blockID : Block.obsidian.blockID)), (world.provider.dimensionId == 0 && world.rand.nextBoolean()) ? 2 : 0, 0);
 						} else if(x == 8 && z == 8 && (y == 3 || y == 4)) {
 							if(y == 3) {world.setBlock(xF, y, zF, FyresModjam3.crystalStand.blockID);}
 							else if(y == 4) {world.setBlock(xF, y, zF, FyresModjam3.crystal.blockID, world.provider.dimensionId == -1 ? 2 : world.provider.dimensionId, 0);}
-						} else if(world.getBlockId(xF, y + 1, zF) != Block.stairsNetherBrick.blockID && world.getBlockId(xF, y + 1, zF) != Block.stairsCobblestone.blockID && (x == 5 + (y % 6) && z == 5 && (y/6) % 4 == 0) || (z == 5 + (y % 6) && x == 11 && (y/6) % 4 == 1) || (x == 11 - (y % 6) && z == 11 && (y/6) % 4 == 2) || (z == 11 - (y % 6) && x == 5 && (y/6) % 4 == 3)) {
-							world.setBlock(xF, y, zF, world.provider.dimensionId == -1 ? Block.stairsNetherBrick.blockID : Block.stairsCobblestone.blockID, stairOrientation[(y/6) % 4], 0);
+						} else if(world.getBlockId(xF, y + 1, zF) != Block.stairsNetherBrick.blockID && world.getBlockId(xF, y + 1, zF) != Block.stairsStoneBrick.blockID && (x == 5 + (y % 6) && z == 5 && (y/6) % 4 == 0) || (z == 5 + (y % 6) && x == 11 && (y/6) % 4 == 1) || (x == 11 - (y % 6) && z == 11 && (y/6) % 4 == 2) || (z == 11 - (y % 6) && x == 5 && (y/6) % 4 == 3)) {
+							world.setBlock(xF, y, zF, world.provider.dimensionId == -1 ? Block.stairsNetherBrick.blockID : Block.stairsStoneBrick.blockID, stairOrientation[(y/6) % 4], 0);
 							world.setBlockToAir(xF, y + 1, zF);
 							world.setBlockToAir(xF, y + 2, zF);
 							world.setBlockToAir(xF, y + 3, zF);
