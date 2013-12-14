@@ -22,11 +22,11 @@ import net.minecraft.world.World;
 public class ItemScroll extends Item {
 	
 	public static String[][] scrollText = new String[][] {
-			{"Unkown Adventurer", "Scroll #1", "This morning I fell out of the sky. I am unsure of where I am, or for what purpose, but I've begun construction on a small shelter for the time being.", "I've now spent days scouting the nearby area with no luck. Still alone, I'm made my decision to set out further, however unsure of what I might find.", "I've discovered an ancient stronghold. Writtings of end times cover the walls. What could it mean? And who built this place, why was it here? And I have the unsettling feeling I'm not alone in these ruins..."},
-			{"Village Elder", "Scroll #2", "Words"},
-			{"Pigman Warrior", "Scroll #3", "Words"},
-			{"Enderman Urchin", "Scroll #4", "Words"},
-			{"Author", "Scroll #5", "Words"}
+			{"Unkown Adventurer", "Codex #1: Adventurer's Log", "This morning I fell out of the sky. I am unsure of where I am, or for what purpose, but I've begun construction of a small shelter for the time being.", "I've now spent days scouting the nearby area with no luck. Still alone, I'm made my decision to set out further.", "I've discovered an ancient stronghold. Writtings of end times cover the walls. What could it mean? Who built this place? Why was it here? And I have an unsettling feeling that I'm being watched..."},
+			{"Village Elder", "Codex #2: An Elders Warning", "For thousands of years, we have lived peacefully. As stories of a distant past began to fade, us elders became tasked with remembering, but still there are those who choose to forget.", "The lines between worlds begin to blur once again. In the deepest caverns, we can see in to their world, and theirs in to ours, but we're told ignore it. The end returns, yet no other will listen. It's clear I must find the crystal alone."},
+			{"Pigman Warrior", "Codex #3", "Words"},
+			{"Enderman Urchin", "Codex #4", "Words"},
+			{"Author", "Codex #5", "Words"}
 	};
 	
 	// TODO get text from text file to allow for user editting
