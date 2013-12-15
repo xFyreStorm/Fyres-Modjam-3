@@ -103,7 +103,7 @@ public class FyresModjam3 implements IPlayerTracker {
 		
 		crystalItem = new ItemCrystal(crystal.blockID - 256);
 		
-		sceptre = new ItemSceptre(itemID).setUnlocalizedName("sceptre").setCreativeTab(CreativeTabs.tabCombat).setFull3D();
+		sceptre = new ItemStaffs(itemID).setUnlocalizedName("sceptre").setCreativeTab(CreativeTabs.tabCombat).setFull3D();
 		LanguageRegistry.addName(sceptre, "Sceptre");
 		
 		scroll = new ItemScroll(itemID + 1).setUnlocalizedName("scroll").setCreativeTab(CreativeTabs.tabMisc);

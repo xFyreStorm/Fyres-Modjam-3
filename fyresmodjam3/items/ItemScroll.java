@@ -46,26 +46,28 @@ public class ItemScroll extends Item {
 	}
 	
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par1, boolean b) {
-		if(!stack.hasTagCompound()) {stack.stackTagCompound = new NBTTagCompound();}
-		
-		if(!stack.getTagCompound().hasKey("initialized") || !stack.getTagCompound().getBoolean("initialized")) {
-			stack.getTagCompound().setBoolean("initialized", true);
+		if(!world.isRemote) {
+			if(!stack.hasTagCompound()) {stack.stackTagCompound = new NBTTagCompound();}
 			
-			ItemStack book = new ItemStack(Item.writtenBook, 1, 0);
-			
-			NBTTagList pages = new NBTTagList("pages");
-			
-			for(int i = 2; i < scrollText[stack.getItemDamage() % scrollText.length].length; i++) {
-				pages.appendTag(new NBTTagString("" + (i - 1), scrollText[stack.getItemDamage() % scrollText.length][i]));
+			if(!stack.getTagCompound().hasKey("initialized") || !stack.getTagCompound().getBoolean("initialized")) {
+				stack.getTagCompound().setBoolean("initialized", true);
+				
+				ItemStack book = new ItemStack(Item.writtenBook, 1, 0);
+				
+				NBTTagList pages = new NBTTagList("pages");
+				
+				for(int i = 2; i < scrollText[stack.getItemDamage() % scrollText.length].length; i++) {
+					pages.appendTag(new NBTTagString("" + (i - 1), scrollText[stack.getItemDamage() % scrollText.length][i]));
+				}
+				
+				book.setTagInfo("pages", pages);
+				book.setTagInfo("author", new NBTTagString("author", scrollText[stack.getItemDamage() % scrollText.length][0]));
+				book.setTagInfo("title", new NBTTagString("title", scrollText[stack.getItemDamage() % scrollText.length][1]));
+				
+				NBTTagCompound bookTag = new NBTTagCompound();
+				book.writeToNBT(bookTag);
+				stack.setTagInfo("book", bookTag);
 			}
-			
-			book.setTagInfo("pages", pages);
-			book.setTagInfo("author", new NBTTagString("author", scrollText[stack.getItemDamage() % scrollText.length][0]));
-			book.setTagInfo("title", new NBTTagString("title", scrollText[stack.getItemDamage() % scrollText.length][1]));
-			
-			NBTTagCompound bookTag = new NBTTagCompound();
-			book.writeToNBT(bookTag);
-			stack.setTagInfo("book", bookTag);
 		}
 	}
 	
